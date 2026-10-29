@@ -1,21 +1,10 @@
-﻿# CMakeList.txt: проект CMake для lab_1; включите исходный код и определения,
-# укажите здесь логику для конкретного проекта.
-#
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required(VERSION 3.20)
+project(lab_1 CXX)
 
-# Включение горячей перезагрузки для компиляторов MSVC, если поддерживается.
-if (POLICY CMP0141)
-  cmake_policy(SET CMP0141 NEW)
-  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
-endif()
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-project ("lab_1")
+find_package(Threads REQUIRED)
 
-# Добавьте источник в исполняемый файл этого проекта.
-add_executable (lab_1 "lab_1.cpp" "lab_1.h")
-
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET lab_1 PROPERTY CXX_STANDARD 20)
-endif()
-
-# TODO: Добавьте тесты и целевые объекты, если это необходимо.
+add_executable(lab_1 lab_1.cpp)
+target_link_libraries(lab_1 PRIVATE Threads::Threads)
