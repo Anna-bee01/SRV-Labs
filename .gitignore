@@ -1,0 +1,35 @@
+# Папки сборки CMake (Visual Studio)
+out/
+build/
+cmake-build-*/
+
+# Файлы Visual Studio
+.vs/
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+
+# Артефакты компиляции
+*.exe
+*.obj
+*.o
+*.pdb
+*.ilk
+*.idb
+*.lib
+*.exp
+*.dll
+
+# Кэш CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Прочее
+*.log
+.DS_Store
+Thumbs.db
