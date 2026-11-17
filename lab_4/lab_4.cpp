@@ -50,7 +50,7 @@ void check_all_fat_men_dead() {
 
 // Функция для толстяка
 void fat_man(int id, int& dish, int& eaten) {
-    while (!game_over) {
+    while (true) {
         // Проверка таймера
         if (chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - global_start_time).count() >= 5) {
             mtx.lock();
@@ -63,6 +63,11 @@ void fat_man(int id, int& dish, int& eaten) {
         }
 
         mtx.lock();
+
+        if (game_over) {
+            mtx.unlock();
+            break;
+        }
 
         // Если ход Кука — ждем
         if (cook_turn) {
@@ -125,7 +130,7 @@ void fat_man(int id, int& dish, int& eaten) {
 
 // Функция для Кука
 void cook() {
-    while (!game_over) {
+    while (true) {
         // Проверка таймера
         if (chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now() - global_start_time).count() >= 5) {
             mtx.lock();
@@ -138,6 +143,11 @@ void cook() {
         }
 
         mtx.lock();
+
+        if (game_over) {
+            mtx.unlock();
+            break;
+        }
 
         // Если все толстяки вышли — Кук больше не нужен
         if (alive_fat_men <= 0) {
